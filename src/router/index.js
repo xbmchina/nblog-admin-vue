@@ -54,7 +54,7 @@ export const constantRouterMap = [
       {
         path: 'article',
         name: 'Article',
-        component: () => import('@/views/article/index'),
+        component: () => import('@/views/article/add'),
         meta: { title: '文章管理', icon: 'table' }
       },
       {
