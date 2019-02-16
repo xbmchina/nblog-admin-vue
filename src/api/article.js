@@ -33,3 +33,14 @@ export function getArticleList(params) {
     params
   })
 }
+
+
+
+export function uploadImg(params) {
+  return request({
+    url: '/file/upload',
+    method: 'post',
+    data: params,
+    headers: { 'Content-Type': 'multipart/form-data' }
+  })
+}
