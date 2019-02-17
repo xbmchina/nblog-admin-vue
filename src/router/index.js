@@ -65,6 +65,12 @@ export const constantRouterMap = [
         meta: { title: '分类管理', icon: 'table' }
       },
       {
+        path: 'special',
+        name: 'Special',
+        component: () => import('@/views/special/index'),
+        meta: { title: '专项管理', icon: 'table' }
+      },
+      {
         path: 'tag',
         name: 'Tag',
         component: () => import('@/views/tag/index'),

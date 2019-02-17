@@ -97,8 +97,10 @@
             type: 'success',
             message: '删除成功!'
           });
-          delArticle({"id":row.id});
-          this.fetchData();
+          delArticle({"id":row.id}).then(response=>{
+            this.fetchData();
+          });
+          
         }).catch(() => {
         });
       },
