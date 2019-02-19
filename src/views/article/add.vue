@@ -24,10 +24,10 @@
         <el-col :span="4">
           <el-select v-model="form.specialId" placeholder="发布专栏">
             <el-option
-              v-for="item in options"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
+              v-for="item in specailOpts"
+              :key="item.name"
+              :label="item.name"
+              :value="item.name">
             </el-option>
           </el-select>
         </el-col>
@@ -63,7 +63,7 @@
   import { mavonEditor } from 'mavon-editor'
   import 'mavon-editor/dist/css/index.css'
   import { addArticle,getArticle,uploadImg } from '@/api/article'
-
+  import { getList } from '@/api/special'
 
   export default {
     name: 'editor',
@@ -90,22 +90,7 @@
           value: 2,
           label: '翻译'
         }],
-        options: [{
-          value: 1,
-          label: '黄金糕'
-        }, {
-          value: 2,
-          label: '双皮奶'
-        }, {
-          value: 3,
-          label: '蚵仔煎'
-        }, {
-          value: 4,
-          label: '龙须面'
-        }, {
-          value: 5,
-          label: '北京烤鸭'
-        }],
+        specailOpts: [],
         value: '',
          dynamicTags: ['标签一', '标签二', '标签三'],
         inputVisible: false,
@@ -118,12 +103,19 @@
       if(id != null && id != undefined && id != ''){
         this.fetchData({"id":id});
       }
+      this.getSpecialList();
     },
      methods: {
       handleClose(tag) {
         this.dynamicTags.splice(this.dynamicTags.indexOf(tag), 1);
       },
-
+      getSpecialList(params) {
+        getList(params).then(response => {
+            if(response.code == 200){
+              this.specailOpts = response.data.data;
+            }
+          });
+      },
       showInput() {
         this.inputVisible = true;
         this.$nextTick(_ => {
