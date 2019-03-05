@@ -6,8 +6,12 @@
       </el-form-item>
       <el-form-item label="类型">
         <el-select v-model="form.category" placeholder="类型">
-          <el-option label="文艺" value="shanghai"></el-option>
-          <el-option label="科技" value="beijing"></el-option>
+            <el-option
+                v-for="item in categoryOpts"
+                :key="item.name"
+                :label="item.name"
+                :value="item.id"
+              ></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="发布日期">
@@ -59,7 +63,9 @@
 </template>
 
 <script>
-  import { getArticleList,delArticle } from '@/api/article'
+import { getArticleList,delArticle } from '@/api/article'
+import { getList } from "@/api/special";
+import { getCategoryList } from '@/api/category';
 
  export default {
     data() {
@@ -72,11 +78,13 @@
         },
         search: '',
         currentPage: 1,
-        total: 50
+        total: 50,
+        categoryOpts: [],
       }
     },
     mounted() {
       this.fetchData();
+      this.getCateList();
     },
     methods: {
       handleEdit(index, row) {
@@ -86,6 +94,13 @@
       handlAdd() {
         this.$router.push({name: '/article/add'});
       }, 
+      getCateList(params) {
+      getCategoryList(params).then(response => {
+        if (response.code == 200) {
+          this.categoryOpts = response.data.data;
+        }
+      });
+    },
       handleDelete(index, row) {
         console.log(index, row);
         this.$confirm('是否删除', '提示', {

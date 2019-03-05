@@ -52,7 +52,7 @@
 </template>
 
 <script>
-  import { getList,saveCategory,updateCategory,delCategory } from '@/api/category'
+  import { getCategoryList,saveCategory,updateCategory,delCategory } from '@/api/category'
 
  export default {
     data() {
@@ -115,7 +115,7 @@
         this.fetchData(this.form);
       },
       fetchData(params) {
-        getList(params).then(response => {
+        getCategoryList(params).then(response => {
           if(response.code == 200){
             this.tableData = response.data.data;
             this.total = response.data.total;
