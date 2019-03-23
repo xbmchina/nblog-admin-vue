@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function addArticle(params) {
   return request({
-    url: '/article/save',
+    url: '/admin/article/save',
     method: 'post',
     params
   })
@@ -12,7 +12,7 @@ export function addArticle(params) {
 
 export function delArticle(params) {
   return request({
-    url: '/article/del',
+    url: '/admin/article/del',
     method: 'post',
     params
   })

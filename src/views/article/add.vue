@@ -58,6 +58,12 @@
           </el-form-item>
         </el-col>
 
+    <el-col :span="6">
+          <el-form-item label="题图">
+            <el-input v-model="form.img" placeholder="请输入题图"></el-input>
+          </el-form-item>
+        </el-col>
+
       <!--  <el-col :span="16">
           <el-tag
             :key="tag"
@@ -112,7 +118,8 @@ export default {
         shortcut: "",
         specialId: "",
         categoryId: "",
-        content: ""
+        content: "",
+        img:""
       },
       originOpts: [
         {
@@ -137,7 +144,6 @@ export default {
     };
   },
   mounted() {
-    console.log("xxxxx" + this.id);
     var id = this.id;
     if (id != null && id != undefined && id != "") {
       this.fetchData({ id: id });
@@ -180,7 +186,6 @@ export default {
     },
 
     onSubmit() {
-      console.log("submit!");
       if (
         this.form.title != undefined &&
         this.form.content != undefined &&
@@ -210,7 +215,7 @@ export default {
       formdata.append("file", $file);
       uploadImg(formdata).then(response => {
         console.log(response);
-        this.$refs.md.$img2Url(pos, "/api" + response.data);
+        this.$refs.md.$img2Url(pos, "/blog" + response.data);
       });
       //  axios({
       //      url: '/api/file/upload',

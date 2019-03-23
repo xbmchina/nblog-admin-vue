@@ -10,7 +10,7 @@ export function getCategoryList(params) {
 
 export function saveCategory(params) {
     return request({
-      url: '/category/save',
+      url: '/admin/category/save',
       method: 'post',
       params
     })
@@ -19,7 +19,7 @@ export function saveCategory(params) {
 
   export function updateCategory(params) {
     return request({
-      url: '/category/update',
+      url: '/admin/category/update',
       method: 'post',
       params
     })
@@ -27,7 +27,7 @@ export function saveCategory(params) {
 
   export function delCategory(params) {
     return request({
-      url: '/category/del',
+      url: '/admin/category/del',
       method: 'post',
       params
     })

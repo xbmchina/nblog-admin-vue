@@ -13,7 +13,8 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     if (store.getters.token) {
-      config.headers['X-Token'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
+      // headers: {"Authorization": "Bearer " + token }
+      config.headers['Authorization'] = "Bearer "+getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
     }
     return config
   },
@@ -37,7 +38,7 @@ service.interceptors.response.use(
         type: 'error',
         duration: 5 * 1000
       })
-
+      
       // 50008:非法的token; 50012:其他客户端登录了;  50014:Token 过期了;
       if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
         MessageBox.confirm(
@@ -56,10 +57,12 @@ service.interceptors.response.use(
       }
       return Promise.reject('error')
     } else {
+      console.log("lllllllllllllll"+res);
       return response.data
     }
   },
   error => {
+    console.log("gggggggggggggg");
     console.log('err' + error) // for debug
     Message({
       message: error.message,

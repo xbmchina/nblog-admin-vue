@@ -10,7 +10,7 @@ export function getList(params) {
 
 export function saveSpecial(params) {
     return request({
-      url: '/special/save',
+      url: '/admin/special/save',
       method: 'post',
       params
     })
@@ -19,7 +19,7 @@ export function saveSpecial(params) {
 
   export function updateSpecial(params) {
     return request({
-      url: '/special/update',
+      url: '/admin/special/update',
       method: 'post',
       params
     })
@@ -27,7 +27,7 @@ export function saveSpecial(params) {
 
   export function delSpecial(params) {
     return request({
-      url: '/special/del',
+      url: '/admin/special/del',
       method: 'post',
       params
     })
